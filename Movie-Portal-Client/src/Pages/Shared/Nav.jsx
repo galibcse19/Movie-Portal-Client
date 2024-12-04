@@ -1,15 +1,57 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProviders';
+import { toast } from 'react-toastify';
 
 const Nav = () => {
+  const {logOut,user} = useContext(AuthContext)
+  const handleLogOut = () =>{
+    logOut()
+    
+    .then(()=>{
+      toast.warn('Successfully LogOut.',{position: "top-center"});
+    })
+    .catch(error =>console.log(error))
+}
     const links = <>
      <li><Link to={'/'}>Home</Link></li>
      <li><Link >All Movies</Link></li>
-     <li><Link >Add Movie</Link></li>
-     <li><Link >My Favorites</Link></li>
      <li><Link >About</Link></li>
-     <li><Link to={'/logIn'}>Login</Link></li>
-     <li><Link to={'/signUp'}>Register</Link></li>
+     
+     {
+        user ? <>
+          <li><Link >Add Movie</Link></li>
+          <li><Link >My Favorites</Link></li>
+         <li>
+         <div className="relative group">
+              {/* <Link to={'/userProfile'}> */}
+                <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-300">
+                  {user && user?.email ? (
+                    <img
+                      src={user?.photoURL}
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center w-full h-full bg-gray-300 text-gray-700 font-bold">
+                      ?
+                    </div>
+                  )}
+                </div>
+              {/* </Link> */}
+              {user && (
+                <span className="absolute left-1/2  top-12 bg-gray-800 text-white text-sm px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {user.displayName}
+                </span>
+              )}
+            </div>
+         </li>
+         <button onClick={handleLogOut} className='btn btn-ghost'>LOGOUT</button>
+        </> : <>
+        <li><Link to={'/logIn'}>Login</Link></li>
+        <li><Link to={'/signUp'}>Register</Link></li>
+        </>
+     }
     </>
     
     return (

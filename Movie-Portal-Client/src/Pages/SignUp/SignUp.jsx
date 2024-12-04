@@ -1,10 +1,68 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../Providers/AuthProviders';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
-    const onSubmit = data =>{
-        console.log(data);
+    const {createUser,setUser,signInWithGoogle,updateUserProfile} = useContext(AuthContext);
+    const [error,setError] = useState('');
+    const navigate = useNavigate();
+    const location =useLocation();
+    const from =location.state?.from?.pathname || "/";
+
+    const handleRegister = event =>{
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const photo = form.url.value;
+        const password = form.password.value;
+        // const user ={name,email,photo,password}
+        // console.log(user)
+
+    
+        createUser(email,password)
+         .then(result =>{
+            const user = result.user;
+            setUser(user);
+            console.log(user);
+            updateUserProfile({displayName:name,photoURL:photo})
+            .then(()=>{
+                // setUser({ ...user, displayName: name, photoURL: photoURL });
+                // window.location.reload();
+                setUser((prevUser) => ({
+                    ...prevUser,
+                    displayName: name,
+                    photoURL: photo
+                  }));
+                toast.success('Register Successfull.',{position: "top-center"});
+                navigate(from, {replace:true});
+            })
+            .catch((error)=>{
+                setError(error.message);
+            })
+            toast.success('Register successfully done.',{position: "top-center"});
+            navigate(from, {replace:true});
+         })
+         .catch((error) => {
+            setError(error.message); 
+          });
      
    };
+  
+
+const handelGoogleSignIn =()=>{
+    signInWithGoogle()
+    .then((result)=>{
+        const user=result.user;
+        console.log(user);
+        toast.success('Register successfully done.',{position: "top-center"});
+        navigate(from, {replace:true});
+    })
+    .catch((error)=>{
+        setError(error);
+    })
+}
 
     return (
         <div>
@@ -21,7 +79,7 @@ const SignUp = () => {
                     {/* Login Form Section */}
                     <div className="backdrop-blur-md bg-white bg-opacity-30 border border-white border-opacity-30 rounded-lg p-8 m-4 w-full max-w-md shadow-lg">
                     <h2 className="text-xl md:text-2xl font-bold mb-6 text-center text-white">REGISTER NOW</h2>
-                    <form  >
+                    <form  onSubmit={handleRegister}>
                         <div className="mb-4">
                         <label className="block text-sm font-medium text-white" htmlFor="email">Name</label>
                         <input
@@ -44,7 +102,7 @@ const SignUp = () => {
                         <label className="block text-sm font-medium text-white" htmlFor="email">PhotoURL</label>
                         <input
                             type="url"
-                            name="photoURL"
+                            name="url"
                             placeholder='Enter Your PhotoURL'
                             className="mt-1 p-4 block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500 bg-transparent text-white"
                         />
@@ -67,7 +125,7 @@ const SignUp = () => {
                     </form>
                     <p className='text-white my-2'>Already have an Account? <a className='font-bold my-2' href="/logIn">Log In</a></p>
                     <p className='my-4 text-white text-center'>OR</p>
-                    <p><button className="w-full font-bold lg:p-4 md:p-4 p-2 bg-green-900 text-white rounded-md hover:bg-red-500">Log in with Google</button></p>
+                    <p><button onClick={handelGoogleSignIn} className="w-full font-bold lg:p-4 md:p-4 p-2 bg-green-900 text-white rounded-md hover:bg-red-500">Log in with Google</button></p>
                     </div>
                 </div>
             </div>
