@@ -15,13 +15,13 @@ const Nav = () => {
 }
     const links = <>
      <li><Link to={'/'}>Home</Link></li>
-     <li><Link >All Movies</Link></li>
-     <li><Link >About</Link></li>
+     <li><Link to={'/allMovies'}>All Movies</Link></li>
+     <li><Link to={'/about'}>About</Link></li>
      
      {
         user ? <>
-          <li><Link >Add Movie</Link></li>
-          <li><Link >My Favorites</Link></li>
+          <li><Link to={'/addMovie'}>Add Movie</Link></li>
+          <li><Link to={'/myFavorites'}>My Favorites</Link></li>
          <li>
          <div className="relative group">
               {/* <Link to={'/userProfile'}> */}

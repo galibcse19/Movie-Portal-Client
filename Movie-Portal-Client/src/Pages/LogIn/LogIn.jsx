@@ -59,7 +59,7 @@ const LogIn = () => {
             <div className="flex flex-col items-center justify-center px-4">
                 {/* Welcome Section */}
                 <div className="backdrop-blur-md bg-white bg-opacity-30 border border-white border-opacity-30 rounded-lg p-6 m-4 w-full max-w-md shadow-lg text-center">
-                <h1 className="text-xl lg:text-3xl md:text-3xl font-bold text-white">WELCOME TO ECO-ADVENTURE</h1>
+                <h1 className="text-xl md:text-3xl lg:text-3xl font-bold text-white">WELCOME TO MOVIE PORTAL</h1>
                 </div>
 
                 {/* Login Form Section */}

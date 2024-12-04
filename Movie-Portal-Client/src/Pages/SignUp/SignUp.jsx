@@ -17,8 +17,16 @@ const SignUp = () => {
         const email = form.email.value;
         const photo = form.url.value;
         const password = form.password.value;
-        // const user ={name,email,photo,password}
-        // console.log(user)
+
+        // Password validation check
+        const isValidPassword = validatePassword(password);
+        if (!isValidPassword) {
+        setError(
+            'Password must be at least 6 characters long and include both uppercase and lowercase letters.'
+        );
+        return;
+        }
+        setError(''); 
 
     
         createUser(email,password)
@@ -28,15 +36,13 @@ const SignUp = () => {
             console.log(user);
             updateUserProfile({displayName:name,photoURL:photo})
             .then(()=>{
-                // setUser({ ...user, displayName: name, photoURL: photoURL });
-                // window.location.reload();
                 setUser((prevUser) => ({
                     ...prevUser,
                     displayName: name,
                     photoURL: photo
                   }));
-                toast.success('Register Successfull.',{position: "top-center"});
-                navigate(from, {replace:true});
+                // toast.success('Register Successfull.',{position: "top-center"});
+                // navigate(from, {replace:true});
             })
             .catch((error)=>{
                 setError(error.message);
@@ -50,7 +56,6 @@ const SignUp = () => {
      
    };
   
-
 const handelGoogleSignIn =()=>{
     signInWithGoogle()
     .then((result)=>{
@@ -63,6 +68,13 @@ const handelGoogleSignIn =()=>{
         setError(error);
     })
 }
+const validatePassword = (password) => {
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const isValidLength = password.length >= 6;
+
+    return hasUppercase && hasLowercase && isValidLength;
+  };
 
     return (
         <div>
@@ -123,6 +135,9 @@ const handelGoogleSignIn =()=>{
                         REGISTER
                         </button>
                     </form>
+                    {
+                    error && <p className='text-red-600'>{error}</p>
+                    }
                     <p className='text-white my-2'>Already have an Account? <a className='font-bold my-2' href="/logIn">Log In</a></p>
                     <p className='my-4 text-white text-center'>OR</p>
                     <p><button onClick={handelGoogleSignIn} className="w-full font-bold lg:p-4 md:p-4 p-2 bg-green-900 text-white rounded-md hover:bg-red-500">Log in with Google</button></p>
