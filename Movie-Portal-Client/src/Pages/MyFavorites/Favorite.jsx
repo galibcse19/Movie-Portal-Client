@@ -1,10 +1,21 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const Favorite = ({data}) => {
     const {title,dutation,genre,photo,rating,releasedYear} =data;
     console.log(data);
     const handleDeleteFav = (_id)=>{
         console.log(_id)
+        fetch(`http://localhost:5000/favMovies/${_id}`,{
+            method:'DELETE',
+        })
+        .then(res => res.json())
+        .then(data=>{
+            console.log(data);
+            if(data.deletedCount>0){
+                toast.error('Delete successfully',{position: "top-center"})
+            }
+        })
     }
     return (
         <div>
