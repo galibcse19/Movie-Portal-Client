@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProviders';
 import { toast } from 'react-toastify';
 
 const AddMovie = () => {
     const {user} = useContext(AuthContext);
+    const {error, setError} = useState('');
+    
     const handleSubmit =(event)=>{
         event.preventDefault();
         const form = event.target;
@@ -40,8 +42,27 @@ const AddMovie = () => {
         }
         const movieData = {title,email,dutation,summary,rating,genre,releasedYear,photo}
         console.log(movieData)
+ 
+        fetch('http://localhost:5000/movies',{
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(movieData)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.insertedId){
+                toast.success('Data Submit sucessfull',{position: "top-center"});
+            }
+        })
+        // .catch(error => console.log(error.message));
+        .catch(error =>{
+            setError(error.message)
+        });
 
     }
+
     function isValidMovieTitle(title) {
         if (!title || title.trim().length < 2) {
             return false;  
@@ -126,6 +147,7 @@ const AddMovie = () => {
                                         <option>horor</option>
                                         <option selected>Adventure</option>
                                         <option>Fiction</option>
+                                        <option>Crime</option>
                                     </select>
                             </label>
                             <label className="form-control w-full">
@@ -159,7 +181,7 @@ const AddMovie = () => {
                             </button>
                     </label>
                 </form>
-                
+                {error}
             </div>
         </div>
     );

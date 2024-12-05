@@ -10,13 +10,14 @@ const AuthProviders = ({children}) => {
     const googleProvider = new GoogleAuthProvider();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    // const [posts, setPosts] = useState([]);
-    // useEffect(()=>{
-    //     fetch('data.json')
-    //     .then(res => res.json())
-    //     .then(data => setPosts(data))
-    // },[])
-    // console.log(user);
+
+    const [movieData, setMovieData] = useState([]);
+    useEffect(()=>{
+        fetch('http://localhost:5000/movies')
+        .then(res => res.json())
+        .then(data => setMovieData(data))
+    },[])
+    // console.log(moveData);
 
 
     const createUser = (email,password)=>{
@@ -61,7 +62,7 @@ const AuthProviders = ({children}) => {
     },[])
 
     const authInfo ={
-        signInWithGoogle,createUser,setUser,signIn,logOut,user,updateUserProfile,forgetPassword,loading
+        signInWithGoogle,createUser,setUser,signIn,logOut,user,updateUserProfile,forgetPassword,loading,movieData
     }
     return (
         <AuthContext.Provider value={authInfo}>
