@@ -1,11 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProviders';
 import { toast } from 'react-toastify';
+import { Rating } from 'react-simple-star-rating';
+// import { Rating } from 'react-simple-star-rating';
 
 const AddMovie = () => {
     const {user} = useContext(AuthContext);
     const {error, setError} = useState('');
-    
+ 
+ 
     const handleSubmit =(event)=>{
         event.preventDefault();
         const form = event.target;
@@ -19,7 +22,7 @@ const AddMovie = () => {
         const photo = form.photo.value;
          
     
-        // Validate movie title using the outer function
+         
         if (!isValidMovieTitle(title)) {
             toast.warn('Movie title must not be empty and should have at least 2 characters.',{position: "top-center"});
             return;
@@ -44,7 +47,7 @@ const AddMovie = () => {
         console.log(movieData)
  
         fetch('http://localhost:5000/movies',{
-            method: 'POST',
+            method: 'POS',
             headers:{
                 'content-type': 'application/json'
             },
@@ -137,6 +140,7 @@ const AddMovie = () => {
                                         <option>5</option>
                                     </select>
                             </label>
+                             
                             <label className="form-control w-full">
                                     <div className="label">
                                         <span className="label-text text-white">Genre</span>
