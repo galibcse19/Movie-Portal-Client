@@ -13,7 +13,7 @@ const AuthProviders = ({children}) => {
 
     const [movieData, setMovieData] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/movies')
+        fetch('https://movie-portal-server-snowy.vercel.app/movies')
         .then(res => res.json())
         .then(data => setMovieData(data))
     },[])

@@ -6,7 +6,7 @@ const MyFavorites = () => {
     const [favMovieData, setFavMovieData] = useState([]);
     const {user} = useContext(AuthContext);
     useEffect(()=>{
-        fetch('http://localhost:5000/favMovie')
+        fetch('https://movie-portal-server-snowy.vercel.app/favMovie')
         .then(res => res.json())
         .then(data => setFavMovieData(data))
     },[])

@@ -6,7 +6,7 @@ const Favorite = ({data}) => {
     console.log(data);
     const handleDeleteFav = (_id)=>{
         console.log(_id)
-        fetch(`http://localhost:5000/favMovies/${_id}`,{
+        fetch(`https://movie-portal-server-snowy.vercel.app/favMovies/${_id}`,{
             method:'DELETE',
         })
         .then(res => res.json())
@@ -19,7 +19,7 @@ const Favorite = ({data}) => {
     }
     return (
         <div>
-           <div className="card glass lg:w-96 md:w-92 w-80">
+           <div className="card glass lg:w-96 md:w-92 w-76">
              <div className='p-4'>
                 <img className='w-full h-48 border rounded-lg' src={photo} alt="" />
                  <h2 className='my-2 font-bold text-2xl'>Title: {title}</h2>

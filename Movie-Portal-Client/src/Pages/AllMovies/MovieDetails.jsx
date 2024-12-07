@@ -13,7 +13,7 @@ const MovieDetails = () => {
 
     const handleDelete = (_id) => {
         console.log(_id);
-        fetch(`http://localhost:5000/movies/${_id}`, {
+        fetch(`https://movie-portal-server-snowy.vercel.app/movies/${_id}`, {
             method: 'DELETE',
         })
         .then(res => res.json())
@@ -31,7 +31,7 @@ const MovieDetails = () => {
         const FavMovieData = { title, email, dutation, summary, rating, genre, releasedYear, photo }
         console.log(FavMovieData);
 
-        fetch('http://localhost:5000/favMovie', {
+        fetch('https://movie-portal-server-snowy.vercel.app/favMovie', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

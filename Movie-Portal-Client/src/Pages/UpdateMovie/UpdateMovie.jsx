@@ -57,7 +57,7 @@ const UpdateMovie = () => {
         console.log(movieData);
 
         // Uncomment this code to perform the actual update request
-        fetch(`http://localhost:5000/movies/${data._id}`, {
+        fetch(`https://movie-portal-server-snowy.vercel.app/movies/${data._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

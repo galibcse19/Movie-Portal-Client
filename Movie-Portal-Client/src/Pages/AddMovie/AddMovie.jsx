@@ -46,8 +46,8 @@ const AddMovie = () => {
         const movieData = {title,email,dutation,summary,rating,genre,releasedYear,photo}
         console.log(movieData)
  
-        fetch('http://localhost:5000/movies',{
-            method: 'POS',
+        fetch('https://movie-portal-server-snowy.vercel.app/movies',{
+            method: 'POST',
             headers:{
                 'content-type': 'application/json'
             },
