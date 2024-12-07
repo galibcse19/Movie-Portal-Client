@@ -16,6 +16,8 @@ const UpdateMovie = () => {
         setMovie(data); // Update movie state if location changes
     }, [data]);
 
+    
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -54,7 +56,24 @@ const UpdateMovie = () => {
         const movieData = { title, email, dutation, summary, rating, genre, releasedYear, photo };
         console.log(movieData);
 
-        
+        // Uncomment this code to perform the actual update request
+        fetch(`http://localhost:5000/movies/${data._id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(movieData),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Movie updated successfully!', { position: "top-center" });
+                }
+            })
+            .catch((error) => {
+                setError(error.message);
+            });
+
 
     };
 
@@ -224,7 +243,7 @@ const UpdateMovie = () => {
                         </button>
                     </label>
                 </form>
-                {error}
+                {error && <p className="text-red-500">{error}</p>} 
             </div>
         </div>
     );
