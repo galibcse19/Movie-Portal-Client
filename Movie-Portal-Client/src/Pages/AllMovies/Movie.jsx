@@ -10,7 +10,7 @@ const Movie = ({data}) => {
     };
     return (
         <div>
-           <div className="card glass lg:w-96 md:w-92 w-80">
+           <div className="card glass lg:w-96 md:w-92 w-76">
              <div className='p-4'>
                 <img className='w-full h-48 border rounded-lg' src={photo} alt="" />
                  <h2 className='my-2 font-bold text-2xl'>Title: {title}</h2>

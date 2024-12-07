@@ -2,10 +2,10 @@ import React from 'react';
 
 const ExtraSection2 = () => {
     return (
-        <div className='my-10 lg:mx-40 mx-2'>
+        <div className='my-10 lg:mx-40 mx-2 pb-20'>
              <h2 className='font-bold lg:text-4xl md:text-3xl text-xl my-6'>FAQ: Popular Movie Genres</h2>
              <hr />
-            <div className="collapse collapse-arrow bg-base-200 mt-6">
+            <div className="collapse collapse-arrow mt-6">
                 <input type="radio" name="my-accordion-2" defaultChecked />
                 <div className="collapse-title text-xl font-medium">Horror Movies</div>
                 <div className="collapse-content">
@@ -22,7 +22,7 @@ const ExtraSection2 = () => {
                    <p>Not necessarily. Some horror films blend humor (Shaun of the Dead), or focus on atmospheric dread rather than outright scares.</p>
                 </div>
                 </div>
-                <div className="collapse collapse-arrow bg-base-200">
+                <div className="collapse collapse-arrow ">
                 <input type="radio" name="my-accordion-2" />
                 <div className="collapse-title text-xl font-medium">Adventure Movies</div>
                 <div className="collapse-content">
@@ -40,7 +40,7 @@ const ExtraSection2 = () => {
                         While both feature excitement, adventure movies emphasize exploration and journeys, while action films focus more on combat and intense physical conflict.
                 </div>
                 </div>
-                <div className="collapse collapse-arrow bg-base-200">
+                <div className="collapse collapse-arrow ">
                 <input type="radio" name="my-accordion-2" />
                 <div className="collapse-title text-xl font-medium">Drama Movies</div>
                 <div className="collapse-content">
