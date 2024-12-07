@@ -18,7 +18,7 @@ const ExtraSection1 = () => {
         <div className='lg:px-40 px-2 pb-2 mx-auto'>
             <h2 className='font-bold text-center lg:text-4xl md:text-3xl text-xl my-6'>Finding Movie Playlist</h2>
             <hr />
-            <div className='grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 my-6 '>
+            <div className='grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5 my-6 '>
                 <div data-aos="fade-right">
                     <img  className='rounded-lg' src={img1} alt="" />
                 </div>
