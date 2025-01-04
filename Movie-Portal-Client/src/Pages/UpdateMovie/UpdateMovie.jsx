@@ -11,7 +11,7 @@ const UpdateMovie = () => {
 
     // Pre-fill form fields with the passed movie data
     const [movie, setMovie] = useState(data);
-
+    
     useEffect(() => {
         setMovie(data); // Update movie state if location changes
     }, [data]);
