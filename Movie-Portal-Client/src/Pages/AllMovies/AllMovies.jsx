@@ -25,7 +25,7 @@ const AllMovies = () => {
     }, [movieData]);
 
     return (
-        <div>
+        <div className=''>
             {/* Loading State */}
             {loading && <span className="loading loading-spinner text-primary"></span>}
 
@@ -41,7 +41,7 @@ const AllMovies = () => {
             </div>
 
             {/* Movies Grid */}
-            <div className="lg:mx-40 md:mx-10 mx-2 mt-8 mb-32 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+            <div className="lg:mx-40 md:mx-10 mx-2 mt-8 mb-32 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
                 {filteredMovies.length > 0 ? (
                     filteredMovies.map(data => <Movie data={data} key={data._id} />)
                 ) : (

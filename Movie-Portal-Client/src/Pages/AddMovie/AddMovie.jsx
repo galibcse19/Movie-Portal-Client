@@ -94,7 +94,7 @@ const AddMovie = () => {
     return (
         <div>
             <div className="relative bg-cover bg-center pb-10">
-            <div className="absolute inset-0 bg-green-900" />
+            <div className="absolute inset-0 bg-black" />
                 {/* Upper Section with Glassmorphism */}
                 <div className="backdrop-blur-md bg-white bg-opacity-30 border border-white border-opacity-30 rounded-lg p-4 w-full shadow-lg text-center">
                     <h1 className="text-xl md:text-2xl font-bold text-white">Here - Add Movie</h1>

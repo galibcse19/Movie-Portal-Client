@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const FeaturedMovie = ({data}) => {
     console.log(data)
-    const {title,dutation,genre,photo,rating,releasedYear,_id} =data;
+    const {title,photo,summary,_id} =data;
     const navigate = useNavigate();
 
     const handleDetails = () => {
@@ -11,14 +11,11 @@ const FeaturedMovie = ({data}) => {
     };
     return (
         <div>
-           <div className="card glass lg:w-96 md:w-92 w-76">
+           <div className="card glass lg:w-72 md:w-92 w-76">
              <div className='p-4'>
-                <img className='w-full h-48 border rounded-lg' src={photo} alt="" />
+                <img className='w-full h-40 border rounded-lg' src={photo} alt="" />
                  <h2 className='my-2 font-bold text-2xl'>Title: {title}</h2>
-                 <p>Genre: <span className='font-bold my-1'>{genre}</span></p>
-                 <p>Duration: <span className='font-bold my-1'>{dutation}min</span></p>
-                 <p>Release Year: <span className='font-bold my-1'>{releasedYear}</span></p>
-                 <p>Rating: <span className='font-bold my-1'>{rating}</span></p>
+                 <p> <span className='my-1 font-bold'>Description: </span>{summary}</p>
              </div>
                 <button onClick={handleDetails}
                     className="w-full font-bold lg:p-4 md:p-4 p-2 bg-green-900 text-white rounded-md hover:bg-red-500 transition duration-200"
@@ -26,6 +23,7 @@ const FeaturedMovie = ({data}) => {
                     See Details
                </button>
            </div>
+            
         </div>
     );
 };

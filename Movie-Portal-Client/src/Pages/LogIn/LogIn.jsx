@@ -3,6 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Providers/AuthProviders';
 import { useForm } from 'react-hook-form';
+import animation from '../../assets/lotto2.json'
+import Lottie from 'lottie-react';
 
 const LogIn = () => {
     const {signInWithGoogle,signIn,forgetPassword} = useContext(AuthContext);
@@ -52,19 +54,11 @@ const LogIn = () => {
     }
     return (
         <div>
-            <div className="relative bg-cover bg-center py-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-green-900 to-green-900 bg-opacity-50" />
-
-            {/* Upper Section with Glassmorphism */}
-            <div className="flex flex-col items-center justify-center px-4">
-                {/* Welcome Section */}
-                <div className="backdrop-blur-md bg-white bg-opacity-30 border border-white border-opacity-30 rounded-lg p-6 m-4 w-full max-w-md shadow-lg text-center">
-                <h1 className="text-xl md:text-3xl lg:text-3xl font-bold text-white">WELCOME TO MOVIE PORTAL</h1>
+             <div className='grid lg:grid-cols-2 grid-cols-1 lg:px-20 md:px-16 px-2 bg-gray-800'>
+                <div className='w-2/3 py-10   mx-auto my-auto'>
+                <Lottie className='rounderd-full' animationData={animation}></Lottie>
                 </div>
-
-                {/* Login Form Section */}
-                <div className="backdrop-blur-md bg-white bg-opacity-30 border border-white border-opacity-30 rounded-lg lg:p-8 md:p-6 p-4 m-4 w-full max-w-md shadow-lg">
-                <h2 className="text-xl md:text-2xl font-bold mb-6 text-center text-white">LOG IN</h2>
+                <div className='p-6 my-10 bg-gray-700 rounded-xl'>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-4">
                     <label className="block text-sm font-medium text-white" htmlFor="email">Email</label>
@@ -94,7 +88,7 @@ const LogIn = () => {
                     </div>
                     <button
                     type="submit"
-                    className="w-full font-bold lg:p-4 md:p-4 p-2 bg-green-900 text-white rounded-md hover:bg-red-500 transition duration-200"
+                    className="w-full font-bold lg:p-4 md:p-4 p-2 bg-gray-800 text-white rounded-md hover:bg-blue-300 transition duration-200"
                     >
                     LOG IN
                     </button>
@@ -106,10 +100,11 @@ const LogIn = () => {
                     Don't have an Account? <a className="font-bold" href="/signUp">Register</a>
                 </p>
                 <p className='my-4 text-white text-center'>OR</p>
-                <p><button onClick={handelGoogleSignIn} className="w-full font-bold lg:p-4 md:p-4 p-2 bg-green-900 text-white rounded-md hover:bg-red-500">Log in with Google</button></p>
+                <p><button onClick={handelGoogleSignIn} className="w-full font-bold lg:p-4 md:p-4 p-2 bg-gray-800 text-white rounded-md hover:bg-blue-300">Log in with Google</button></p>
                 </div>
+
             </div>
-        </div>
+            
         </div>
     );
 };

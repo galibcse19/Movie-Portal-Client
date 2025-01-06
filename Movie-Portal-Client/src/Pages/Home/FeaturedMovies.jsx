@@ -27,12 +27,12 @@ const FeaturedMovies = () => {
                 <hr />
             </div>
             {/* Movies Grid */}
-            <div className="lg:mx-40 md:mx-10 mx-2 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
+            <div className="lg:mx-40 md:mx-10 mx-2 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
                 {
                   featuredMovies.map(data =><FeaturedMovie data={data} key={data._id}></FeaturedMovie>)
                 }
             </div>
-
+            
             {/* See All Movies Button */}
             <div className="text-center mt-10">
                 <button
